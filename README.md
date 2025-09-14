@@ -29,7 +29,7 @@ A solução é dividida em três pilares principais: Hardware (a coleira), Backe
 
 -   **Microcontrolador:** ESP32 C3 Mini
 -   **Sensor de Frequência Cardíaca e SpO₂:** MAX30102
--   **Sensor de Temperatura:** DS18B20 (à prova d'água)
+-   **Sensor de Temperatura:** DS18B20
 
 ### Backend & Cloud
 

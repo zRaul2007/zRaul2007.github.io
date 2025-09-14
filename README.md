@@ -2,7 +2,7 @@
 
 > Monitoramento inteligente para o bem-estar do seu melhor amigo.
 
-![Banner do Projeto](https://via.placeholder.com/1200x400.png/3b82f6/ffffff?text=PetCare+IoT)
+![Banner do Projeto]([https://via.placeholder.com/1200x400.png/3b82f6/ffffff?text=PetCare+IoT](https://sdmntprwestus.oaiusercontent.com/files/00000000-6558-6230-89bc-1dd1995aa73f/raw?se=2025-09-14T15%3A47%3A01Z&sp=r&sv=2024-08-04&sr=b&scid=87fe0be9-a865-537b-a655-1b3b2c7a54b8&skoid=c156db82-7a33-468f-9cdd-06af263ceec8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-13T20%3A21%3A39Z&ske=2025-09-14T20%3A21%3A39Z&sks=b&skv=2024-08-04&sig=XwFpZPZi5LgnYSwAwtqMA3zi387%2BOvwpLp/fydR9Y8o%3D))
 ---
 
 ## 📄 Sobre o Projeto
@@ -53,7 +53,6 @@ O fluxo de dados do nosso sistema foi projetado para ser simples e eficiente:
 3.  O **aplicativo Flutter** lê os dados do Firestore em tempo real e os exibe para o tutor de forma gráfica e organizada.
 4.  As **Cloud Functions** monitoram o banco de dados e disparam notificações push para o aplicativo se alguma medição crítica for detectada.
 
-![Fluxograma do Sistema](https://via.placeholder.com/800x400.png/e5e7eb/4b5563?text=Fluxograma+do+Sistema)
 ---
 
 ## 📸 Screenshots do Aplicativo
@@ -97,11 +96,11 @@ Para rodar o aplicativo localmente, siga os passos abaixo:
 
 | Nome                              | Função Principal                  |
 | --------------------------------- | --------------------------------- |
-| **Davi Lucas N. R. Andrade** | Desenvolvedor Flutter             |
-| **Enzo Maximus Mota Silva** | Projeto de Hardware               |
-| **Pedro Mortari Fonseca Lima** | Documentação e Pesquisa           |
-| **Raul Pedrogan de Moura** | Desenvolvedor Flutter e UI/UX     |
-| **Thiago Hiroshi F. Ongawa** | Firmware e Testes                 |
+| **Davi Lucas N. R. Andrade** | Relator             |
+| **Enzo Maximus Mota Silva** | Coordenador de Comunicação               |
+| **Pedro Mortari Fonseca Lima** | Coordenador de Produto           |
+| **Raul Pedrogan de Moura** | Líder     |
+| **Thiago Hiroshi F. Ongawa** | Coordenador de Pesquisa                 |
 
 ---
 

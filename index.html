@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="./image/icone.ico">
+    <title>TCC: Sistema de Monitoramento para Saúde de Animais de Estimação</title>
+    <style>
+        /* --- GERAL --- */
+        :root {
+            --primary-color: #3b82f6;
+            /* Azul mais moderno */
+            --secondary-color: #4b5563;
+            /* Cinza escuro */
+            --bg-light: #f9fafb;
+            /* Fundo principal */
+            --bg-white: #ffffff;
+            --text-dark: #1f2937;
+            --text-light: #f9fafb;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./image/dog_fundo.png') no-repeat center center/cover;
+            /* SUBSTITUIR IMAGEM: Troque a URL acima por uma foto de fundo do seu projeto */
+            color: var(--text-light);
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            color: var(--text-light);
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            margin: 1rem 0 2rem 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 5px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .cta-button.secondary {
+            background-color: transparent;
+            border: 2px solid var(--text-light);
+        }
+
+        .cta-button.secondary:hover {
+            background-color: var(--text-light);
+            color: var(--text-dark);
+        }
+
+        /* --- SEÇÕES & CARDS --- */
+        .card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        /* --- GALERIA --- */
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* --- EQUIPE --- */
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .team-member h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .team-member p {
+            color: var(--secondary-color);
+            margin: 0;
+        }
+
+        /* --- REFERÊNCIAS --- */
+        ul.references {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul.references li {
+            background-color: var(--bg-white);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--text-dark);
+            color: var(--text-light);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Sistema de Monitoramento para Saúde de Animais de Estimação</h1>
+        <p>Monitoramento inteligente para o bem-estar do seu melhor amigo. Uma solução IoT completa para tutores que se
+            preocupam.</p>
+        <div>
+            <a href="#projeto" class="cta-button">Conheça o Projeto</a>
+            <a href="https://github.com/zraul2007/flutter_application_1" target="_blank"
+                class="cta-button secondary">Acesse o Código</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="projeto">
+            <div class="container">
+                <h2>O Projeto</h2>
+                <p class="section-intro">Nosso objetivo é proporcionar tranquilidade aos tutores de pets através da
+                    tecnologia, permitindo o acompanhamento da saúde de seus animais de forma contínua e não invasiva.
+                </p>
+
+                <div class="grid">
+                    <div class="card">
+                        <h3>O Problema</h3>
+                        <p>A dificuldade em perceber alterações sutis na saúde dos animais de estimação muitas vezes
+                            leva a diagnósticos tardios. A falta de dados contínuos sobre sinais vitais impede que
+                            tutores e veterinários atuem de forma preventiva, resultando em tratamentos mais complexos e
+                            custosos.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Nossa Solução</h3>
+                        <p>Desenvolvemos uma coleira inteligente equipada com sensores que monitoram em tempo real a
+                            frequência cardíaca, temperatura e saturação de oxigênio (SpO₂). Os dados são enviados via
+                            Wi-Fi para a nuvem e podem ser visualizados em um aplicativo móvel intuitivo, que também
+                            emite alertas em caso de anomalias.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 30px;">
+                    <h3>Arquitetura e Tecnologias Utilizadas</h3>
+                    <p>O coração do nosso hardware é o microcontrolador <strong>ESP32</strong>, responsável por ler os
+                        dados dos sensores <strong>MAX30102</strong> (frequência cardíaca e SpO₂) e
+                        <strong>DS18B20</strong> (temperatura). Os dados são transmitidos para o <strong>Google
+                            Firebase</strong>, que serve como nosso backend em tempo real. O aplicativo foi desenvolvido
+                        com <strong>Flutter</strong>, garantindo uma experiência nativa tanto em Android quanto em iOS.
+                    </p>
+                    <img src="https://via.placeholder.com/800x400.png/e5e7eb/4b5563?text=Fluxograma+do+Sistema"
+                        alt="Fluxograma do Sistema"
+                        style="width:100%; max-width:700px; margin: 20px auto; display: block; border-radius: 8px;" />
+                </div>
+            </div>
+        </section>
+
+        <section id="galeria" style="background-color: var(--bg-white);">
+            <div class="container">
+                <h2>Galeria e Demonstração</h2>
+                <p class="section-intro">Veja o nosso protótipo em ação e as telas do aplicativo que desenvolvemos.</p>
+                <div class="grid">
+                    <div class="card gallery-item"><img
+                            src="https://via.placeholder.com/400x300.png/e5e7eb/4b5563?text=Protótipo+da+Coleira"
+                            alt="Protótipo da Coleira"></div>
+
+                    <div class="card gallery-item"><img
+                            src="https://via.placeholder.com/400x300.png/e5e7eb/4b5563?text=Tela+de+Login"
+                            alt="Tela de Login do App"></div>
+
+                    <div class="card gallery-item"><img
+                            src="https://via.placeholder.com/400x300.png/e5e7eb/4b5563?text=Tela+Principal"
+                            alt="Tela Principal do App"></div>
+
+                    <div class="card gallery-item"><img
+                            src="https://via.placeholder.com/400x300.png/e5e7eb/4b5563?text=Tela+de+Medições"
+                            alt="Tela de Medições do App"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="equipe">
+            <div class="container">
+                <h2>A Equipe</h2>
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="team-member">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Integrante">
+                        <h3>Davi Lucas Nogueira Rabelo Andrade</h3>
+                        <p>Relator</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Integrante">
+                        <h3>Enzo Maximus Mota Silva</h3>
+                        <p>Coordenador de Comunicação</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Integrante">
+                        <h3>Pedro Mortari Fonseca Lima</h3>
+                        <p>Coordenador de Produtos</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Integrante">
+                        <h3>Raul Pedrogan de Moura</h3>
+                        <p>Líder</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Integrante">
+                        <h3>Thiago Hiroshi Ferreira Ongawa</h3>
+                        <p>Coordenador de Pesquisa</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="referencias" style="background-color: var(--bg-white);">
+            <div class="container">
+                <h2>Referências Bibliográficas</h2>
+                <ul class="references">
+                    <li><a href="https://www.cnnbrasil.com.br/tecnologia/internet-das-coisas/" target="_blank">[1] CNN
+                            BRASIL. Internet das Coisas: o que é, como funciona e exemplos de uso. CNN Brasil, 2023.</a>
+                    </li>
+                    <li><a href="https://doi.org/10.1007/s43926-024-00062-9" target="_blank">[2] GOPICHAND, G., et al.
+                            Use of IoT sensor devices for efficient management of healthcare systems: a review. Discov
+                            Internet Things 4, 8 (2024).</a></li>
+                    <li><a href="https://brasil.un.org/pt-br/sdgs" target="_blank">[3] NAÇÕES UNIDAS BRASIL. Objetivos
+                            de Desenvolvimento Sustentável. 2025.</a></li>
+                    <li><a href="https://repositorio.fgv.br/server/api/core/bitstreams/b50af2ba-b001-4b1d-a1ad-5df985f6d1bb/content"
+                            target="_blank">[4] MAGRANI, E. A internet das coisas no Brasil. Rio de Janeiro: FGV
+                            Editora, 2018.</a></li>
+                    <li><a href="https://www.cabidigitallibrary.org/doi/full/10.5555/19582702179" target="_blank">[5]
+                            LEAVELL, H. R.; CLARK, E. G. Preventive Medicine for the Doctor in His
+                            Community: An Epidemiologic Approach. New York: McGraw-Hill, 1965.</a></li>
+                    <li><a href="https://doi.org/10.1089/big.2012.0002" target="_blank">[6] SWAN, M. The
+                            Quantified Self: Fundamental Disruption in Big Data Science and Biological Discovery. Big
+                            Data, v. 1, n. 2, p. 85-99, 2013.</a></li>
+                    <li><a href="https://periodicos.ufsm.br/reca/article/view/64356" target="_blank">[7] SOUZA, A. L. A.
+                            et al. Coleira inteligente: desenvolvimento de um protótipo para monitoramento de sinais
+                            vitais de cães e gatos. Revista Eletrônica de Computação Aplicada, 2021.</a></li>
+                    <li><a href="https://repositorio.ufc.br/handle/riufc/78919" target="_blank">[8] ARAUJO, F. L. L.
+                            Protótipo de aplicação da internet das coisas nos cuidados de animais domésticos: um estudo
+                            com auxílio da ferramenta Arduino. Repositório Institucional do Centro Universitário UNDB,
+                            2022.</a></li>
+                    <li><a href="https://iopscience.iop.org/article/10.1088/1757-899X/298/1/012040" target="_blank">[9]
+                            RAHMAN, N. A. A. et al. GSM
+                            module for wireless radiation monitoring system via SMS. IOP Conference Series: Materials
+                            Science and Engineering, v. 298, n. 1, p. 012040, 2018. </a></li>
+                    <li><a href="https://pubmed.ncbi.nlm.nih.gov/39308735/" target="_blank">[10] MICKEVIČIENĖ, I.;
+                            MIKALAUSKIENĖ, D.; MIKNIENĖ Z. The prognostic importance of physiological and biochemical
+                            parameters in horses afflicted with colic. Journal of Veterinary Science, 2024.</a></li>
+                    <li><a href="https://www.sciencedirect.com/science/article/abs/pii/S2214785321045545"
+                            target="_blank">[11] SANGEETHALAKHMI K. et al. Patient health monitoring system using IoT,
+                            2023. </a></li>
+                    <li><a href="https://www.theengineeringprojects.com/2022/03/reading-data-from-firebase-database-with-esp32.html"
+                            target="_blank">[12] THE ENGINEERING PROJECTS. Reading Data from Firebase Database with
+                            ESP32. 2022.</a></li>
+                    <li><a href="https://firebase.google.com/docs" target="_blank">[13] GOOGLE FIREBASE. Firebase
+                            Documentation. 2025.</a></li>
+                    <li><a href="http://repositorio.undb.edu.br/jspui/handle/areas/186" target="_blank">[14] PEREIRA,
+                            Carlos Vinícius Amaral.
+                            Protótipo de aplicação da internet das coisas nos cuidados de animais domésticos: um estudo
+                            com auxílio da ferramenta Arduino. São Luís: Centro Universitário UNDB, 2020.</a></li>
+                    <li><a href="https://www.blogdarobotica.com/2023/01/11/como-utilizar-o-sensor-de-frequencia-cardiaca-e-oximetro-max30100-com-arduino/"
+                            target="_blank">[15] SOUZA, Jonas. Como utilizar o sensor de frequência cardíaca e oxímetro
+                            MAX30100 com Arduino. Blog da Robótica, 2023.</a></li>
+                    <li><a href="https://www.petz.com.br/blog/como-medir-a-temperatura-de-cachorro/"
+                            target="_blank">[16] PETZ. Como medir a temperatura de cachorro? Saiba
+                            mais!. Petz, 2021.</a></li>
+                    <li><a href="https://www.redcross.org/take-a-class/resources/learn-pet-first-aid/dog/normal-temperature-heart-breathing-rate"
+                            target="_blank">[17] RED CROSS. Qual é a temperatura, frequência cardíaca e respiratória.
+                            Red Cross, 2025.</a></li>
+                    <li><a href="https://www.uniara.com.br/arquivos/file/noticias/manual-ilustrado-semiologia-basica-pequenos-animais.pdf"
+                            target="_blank">[18] UNIARA. Manual ilustrado de semiologia básica de pequenos animais.
+                            Uniara, 2021. </a></li>
+                    <li><a href="https://vetsmart.com.br/cg/estudo/13883/boletim-tecnico-de-cardiologia-abordagem-do-paciente-cardiopata-canino?tab=list-10000"
+                            target="_blank">[19] VETSMART. Boletim Técnico de Cardiologia: Abordagem do paciente
+                            cardiopata canino. Vet Smart, 2019.</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 - TCC em Técnico Mecatrônica - Etec Presidente Vargas. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
